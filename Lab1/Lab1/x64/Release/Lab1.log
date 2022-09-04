@@ -1,7 +1,13 @@
-﻿  Lab1_LIB.cpp
+﻿  Lab1.cpp
+  Lab1_LIB.cpp
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\Lab1\Lab1\Lab1_LIB.cpp(79,52): warning C4244: 'argument': conversion from '_Ty' to 'const unsigned __int64', possible loss of data
+          with
+          [
+              _Ty=double
+          ]
   Generating code
-  1 of 239 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  3 of 247 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Lab1.vcxproj -> C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\Lab1\x64\Release\Lab1.exe
