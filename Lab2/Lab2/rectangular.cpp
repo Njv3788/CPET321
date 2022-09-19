@@ -1,30 +1,31 @@
-/**********************************************************/
-/*** Title: Polar_6.cpp									***/
-/*** Description: Complex Numbers : Polar				***/
-/***				- Class Definitions					***/
-/***				- Constructor (no parameters)		***/
-/***				- Constructor (with parameters)		***/
-/***				- Operator Overloading for * & /	***/
-/***				- Operator Overloading for + & -	***/
-/***				- Operator Overloading ==			***/
-/***				- Operator Overloading - (unary)	***/
-/***				- Mutator - Sets Magnitude & Angle	***/
-/***				- Assessor - Displays Mag & Angle	***/
-/**********************************************************/
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Title: Rectangular									
+// Description: Complex Numbers : Rectangular		
+//			   - Class Definitions					
+//			   - Constructor (no parameters)		
+//			   - Constructor (with parameters)		
+//			   - Operator Overloading for + & -	
+//			   - Operator Overloading ==			
+//			   - Operator Overloading - & + (unary)	
+//			   - Mutator - Sets Magnitude & Angle	
+//			   - Assessor - Displays Mag & Angle	
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include <iostream>
 #include <cmath>
 #include <iomanip>
 #include "rectangular.h"
-
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 using namespace std;
 
 Rectangular::Rectangular()
+// constuctors of Rectangular class setting Data Members to 0
 {
 	real = 0;
 	imaginary = 0;
 };
 
 Rectangular::Rectangular(double mag, double ang)
+// constuctors of Rectangular class setting Data Members
 {
 	real = mag;
 	imaginary = ang;
@@ -32,12 +33,14 @@ Rectangular::Rectangular(double mag, double ang)
 
 
 void Rectangular::setRectangularNumber(double mag, double ang)
+// Manipulator of Rectangular class setting the Data Members
 {
 	real = mag;
 	imaginary = ang;
 }
 
 void Rectangular::displayRectangularNumber()
+// Accessor to display the data members in the class
 {
 	cout << fixed << setprecision(2);
 	
@@ -50,6 +53,7 @@ void Rectangular::displayRectangularNumber()
 };
 
 Rectangular Rectangular::operator+(Rectangular Num)
+// Overloading addition to add two complex varibles together 
 {
 	Rectangular  ans;
 
@@ -60,6 +64,7 @@ Rectangular Rectangular::operator+(Rectangular Num)
 };
 
 Rectangular Rectangular::operator-(Rectangular Num)
+// Overloading subtraction to subtract two complex varibles together
 {
 	Rectangular  ans;
 
@@ -70,70 +75,69 @@ Rectangular Rectangular::operator-(Rectangular Num)
 };
 
 bool Rectangular::operator==(Rectangular Num)
+// Overloading equals to test equality for two complex varibles together
 {
 	double mag_A;
 	double mag_B;
 	
 	mag_A = sqrt(pow(real,2.0) + pow(imaginary, 2));
 	mag_B = sqrt(pow(Num.real, 2.0) + pow(Num.imaginary, 2));
-	if (mag_A == mag_B)
+	if (mag_A == mag_B) 
 		return (true);
 	else
 		return (false);
 };
 
 bool Rectangular::operator>(Rectangular Num)
+// Overloading Greater then to find the larger of two complex varibles together
 {
 	double mag_A;
 	double mag_B;
 
 	mag_A = sqrt(pow(real, 2.0) + pow(imaginary, 2));
 	mag_B = sqrt(pow(Num.real, 2.0) + pow(Num.imaginary, 2));
-	if (mag_A > mag_B)
+	if (mag_A > mag_B) 
 		return (true);
-	else
+	else 
 		return (false);
+	
 };
 
 
 Rectangular Rectangular::operator+()
+// Overloading  unary addition to rotate complex number +90 
 {
-	const float PI = 3.14159;
+	
 	Rectangular ans;
-	
-	double mag;
-	double theta;
 
-	mag = sqrt(pow(real, 2.0) + pow(imaginary, 2.0));
-    theta = atan2(real, imaginary) * (180.0 / PI);
-
-	theta += 45;
+	if ((abs(real) > 0) && (abs(imaginary) > 0)){
+		ans.real = imaginary;
+		ans.imaginary = -real;
+	}
+	else {
+		ans.real = real;
+		ans.imaginary = imaginary;
+	}
 	
-	ans.real = mag * cos(theta * (PI / 180.0));
-    ans.imaginary = mag * sin(theta * (PI / 180.0));
 
 	return (ans);
 };
 
 
 Rectangular Rectangular::operator-()
+// Overloading  unary subtraction to rotate complex number -90 
 {
-	const float PI = 3.14159;
 	Rectangular ans;
 
-	double mag;
-	double theta;
-
-	mag = sqrt(pow(real, 2.0) + pow(imaginary, 2.0));
-	theta = atan2(real, imaginary) * (180.0 / PI);
-
-	theta -= 45;
-
-	ans.real = mag * cos(theta * (PI / 180.0));
-	ans.imaginary = mag * sin(theta * (PI / 180.0));
+	if ((abs(real) > 0) && (abs(imaginary)> 0)) {
+		ans.real = -imaginary;
+		ans.imaginary = real;
+	}
+	else {
+		ans.real = real;
+		ans.imaginary = imaginary;
+	}
 
 	return (ans);
 };
-
-
-//*******************************************
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

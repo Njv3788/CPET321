@@ -1,7 +1,12 @@
-/**********************************************************/
-/*** Title: main_rec_nums.cpp							***/
-/*** Description: Complex Numbers : Rectangular			***/
-/**********************************************************/
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// Title  : Lab_2 (main_rec_nums.cpp)
+// Description: Complex Numbers : Rectangular			
+// Course : Computational problem soving II
+// Developer: Dr George Zion
+// Student : Nathaniel Valla 
+// Date :9/17/2022 
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include <iostream>
 #include "rectangular.h"
 

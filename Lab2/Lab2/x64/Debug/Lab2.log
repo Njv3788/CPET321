@@ -1,4 +1,2 @@
 ﻿  rectangular.cpp
-\\cetstudents.ad.rit.edu\Students\Njv3788\Documents\CPET321\Lab2\Lab2\rectangular.cpp(101,26): warning C4305: 'initializing': truncation from 'double' to 'float'
-\\cetstudents.ad.rit.edu\Students\Njv3788\Documents\CPET321\Lab2\Lab2\rectangular.cpp(121,26): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Lab2.vcxproj -> \\cetstudents.ad.rit.edu\Students\Njv3788\Documents\CPET321\Lab2\x64\Debug\Lab2.exe
+  Lab2.vcxproj -> C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\Lab2\x64\Debug\Lab2.exe
