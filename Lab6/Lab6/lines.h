@@ -16,6 +16,10 @@
 using namespace std;
 
 class lineType
+//class of lines of the form ax+by=c
+//stores a,b,c uses the fine slope and 
+//if two lines equal, parallel, perpendicular
+//and the intersection
 {
 
 	private:
@@ -24,25 +28,31 @@ class lineType
 		double b;
 		double c;
 
+		//helper function
+		string findSlope();
+
 	public:
 	
 		lineType()
+		//constuctor that set every thing to 1
 		{
 			a = 1;
 			b = 1;
 			c = 1;
 		};
-
-		void setCoefficient(double, double, double);
-		void displayLine();
-		void lineSlope();
-		void Intersection(lineType);
 		
-		string findSlope();
+		// manipultors
+		void setCoefficient(double, double, double);  //allows for settimng coefficints
 		
-		bool operator==(lineType);
-		bool operator||(lineType);
-		bool operator&&(lineType);
+		// assecors to
+		void displayLine();                           //display line
+		void lineSlope();                             //find and display slope
+		void Intersection(lineType);                  //find and display intersection with second line
+		
+		//overloaded operators
+		bool operator==(lineType);                    //determine if two lines are equal
+		bool operator||(lineType);                    //determine if two lines are parallel
+		bool operator&&(lineType);					  //determine if two lines are perpendicular
 
 };
 
