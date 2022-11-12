@@ -27,46 +27,25 @@ class Song
 
 	public:
 
-		Song() 
-		{
-			song_name = "";
-		    song_Artist ="";
-		    song_URL = "";
-		}
-		
-		Song(string name,string Artist, string URL)
-		{
-			song_name = name;
-			song_Artist = Artist;
-			song_URL = URL;
-		}
+		//constuctor
+		Song();
+		Song(string name, string Artist, string URL);
 
-		void DisplaySongInfo()
-		{	
-			cout << song_name << " by " << song_Artist << endl;
-		}
+		//acessors 
+		void DisplaySongInfo();
+		void PlaySong();
 
-
-		void PlaySong()
-		{   string command;
-
-			cout << "Playing : ";
-			DisplaySongInfo();
-		
-			//Create Command Line & Call it
-			command = "start chrome --window-size=250,675 " + song_URL;
-			const char* system_command = command.c_str();
-			system(system_command);
-
-			//Close the Brower Window to Continue
-			cout << "\nClose the Browser Window to Continue, then ..." << endl;
-			system("pause");
-		}
+		//friend function
 		friend void printPlaylist(unordered_map<string, list<Song>>&, string&);
 
 };
 
-
+void DisplayPlaylistInfo(list<Song>& playlist);
+list<Song> Create(string);
+void Play1(string&, list<Song>&);
+void Play2(string&, list<Song>&);
+string DisplayPlaylists(unordered_map<string, list<Song>>&);
+list<Song> Create(list<Song>&);
 
 
 #endif

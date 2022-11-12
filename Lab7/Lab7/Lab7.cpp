@@ -42,16 +42,18 @@ int main()
 
         do 
         { 
+            cout << "Menu: Pick a song" << endl;
             postion = 1;
             for(auto i = playlist.begin(); i != playlist.end(); i++)
             {   
-                cout << "( " << postion++ << " ) ";
+                cout << "    ( " << postion++ << " ) ";
                 i->DisplaySongInfo();
             }
             
-            cout << "( " << -1 << " ) Quit ";
+            cout << "    ( " << -1 << " ) Quit ";
             cout << endl;
             cin >> postion;
+            system("cls");
 
             if(postion != -1)
             { 
@@ -67,6 +69,7 @@ int main()
                 else
                 {
                     cout << "Not a track in the playlist" << endl;
+                    system("pause");
                 }
             }
             else
@@ -78,14 +81,9 @@ int main()
         } 
         while (true);
 
-        postion = 0;
-        for (auto i = playlist.begin(); i != playlist.end(); i++)
-        {
-            cout << "( " << ++postion << " ) ";
-            i->DisplaySongInfo();
-        }
-        system("pause");
     }
+    
+    cout << "Thank you have a good day" << endl;
 
     return 0;
 }

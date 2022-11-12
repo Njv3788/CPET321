@@ -128,10 +128,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Lab8.cpp" />
-    <ClCompile Include="Playlist.cpp" />
+    <ClCompile Include="Song.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Playlist.h" />
     <ClInclude Include="Song.h" />
   </ItemGroup>
   <ItemGroup>

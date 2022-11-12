@@ -5,7 +5,6 @@
 #include <list>
 #include <set>
 #include <unordered_map>
-#include "Playlist.h"
 #include "Song.h"
 
 
@@ -47,7 +46,6 @@ int main()
         {
             case -1:
                 again = 0;
-                cout << "Thank you please again" << endl;
                 printPlaylist(playlists, nameOfMaster);
                 break;
             case 1:
@@ -56,7 +54,6 @@ int main()
                     cout << "Please enter name of new playlist: " << endl;
                     cin.ignore();
                     getline(cin, playlistName);
-                    system("cls");
                     playlists.emplace(playlistName, Create(playlists.at(nameOfMaster)));
                     cout << "Playlist is generated: " << endl;
                     DisplayPlaylistInfo(playlists.at(playlistName));
