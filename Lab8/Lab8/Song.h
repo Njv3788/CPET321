@@ -12,7 +12,7 @@
 #include <string>
 #include "Song.h"
 #include "Playlist.h"
-#include <unordered_map>
+#include <map>
 #include <list>
 #include <set>
 
@@ -36,7 +36,7 @@ class Song
 		void PlaySong();
 
 		//friend function
-		friend void printPlaylist(unordered_map<string, list<Song>>&, string&);
+		friend void printPlaylist(map<string, list<Song>>&, string&);
 
 };
 
@@ -44,7 +44,7 @@ void DisplayPlaylistInfo(list<Song>& playlist);
 list<Song> Create(string);
 void Play1(string&, list<Song>&);
 void Play2(string&, list<Song>&);
-string DisplayPlaylists(unordered_map<string, list<Song>>&);
+string DisplayPlaylists(map<string, list<Song>>&);
 list<Song> Create(list<Song>&);
 
 

@@ -11,7 +11,7 @@
 #include <fstream>
 #include <string>
 #include "Song.h"
-#include <unordered_map>
+#include <map>
 #include <list>
 #include <set>
 using namespace std;
@@ -64,7 +64,7 @@ void Song::PlaySong()
     system("pause");
 }
 
-void printPlaylist(unordered_map<string, list<Song>>& playlists, string& master)
+void printPlaylist(map<string, list<Song>>& playlists, string& master)
 // Given Map of Playlists and iterators throught it
 // For each playlist besides master converts spaces to underscores
 // Generates txt file for playlist 
@@ -107,9 +107,9 @@ void printPlaylist(unordered_map<string, list<Song>>& playlists, string& master)
             outFile.open((temp + ".txt").c_str()); //open file
             for (auto j : i.second)
             {
-                outFile << j.song_name << endl;
-                outFile << j.song_Artist << endl;
-                outFile << j.song_URL << endl;
+                outFile << j.song_name << endl;    //output song name to file 
+                outFile << j.song_Artist << endl;  //output song artist to file 
+                outFile << j.song_URL << endl;     //output song url to file 
             }
             outFile.close();                       //close file
 
@@ -133,7 +133,7 @@ void DisplayPlaylistInfo(list<Song>& playlist)
     }
 }
 
-string DisplayPlaylists(unordered_map<string, list<Song>>& playlists)
+string DisplayPlaylists(map<string, list<Song>>& playlists)
 //iterates through map op of Playlist gives postion, name and Size
 //Has user selsct playlist 
 //Advances to postion and finds name of wanted playlist 
@@ -206,7 +206,8 @@ list<Song> Create(string file)
         //constuct new song and put it into play lists
     } 
     while (!(inFile.eof()));
-  
+    system("cls");
+
     return playlist;
 }
 
@@ -292,9 +293,7 @@ void Play1(string& name,list<Song>& playlist)
     //else display not a track
     {
         cout << "Not a track in the playlist" << endl;
-        system("pause");
     }
-    system("cls");
 
 }
 
