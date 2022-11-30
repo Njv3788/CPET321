@@ -23,11 +23,6 @@ int main()
         it.displayVehicle();
     }
 
-    for (auto it : dodgers)
-    {
-        it.displayPlayer();
-    }
-
     return 0;
 }
 

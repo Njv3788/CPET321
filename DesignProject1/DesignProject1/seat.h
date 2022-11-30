@@ -7,6 +7,9 @@
 #ifndef seat_Header
 #define seat_Header
 
+
+#include <iostream>
+#include <fstream>
 #include <string>
 #include <list>
 
@@ -27,6 +30,24 @@ class Seat
 		{
 			reserved = false;
 			points = p;
+		};
+
+		void display()
+		{
+			if (points == 0) 
+			{
+				cout << "   ";
+			}
+			else if (points == -1)
+			{
+				cout << "(D)";
+			}
+			else if (reserved == false)
+			{
+				cout << "(" << points << ")";
+			}
+			else
+				cout << "(X)";
 		};
 };
 #endif
