@@ -16,6 +16,7 @@
 
 using namespace std;
 
+class Player;
 class Seat
 {
 	private:
