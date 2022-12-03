@@ -12,18 +12,17 @@
 #include <string>
 #include <list>
 #include <vector>
-#include "player.h"
 #include "seat.h"
+#include "player.h"
 #include "Reservation.h"
 
 using namespace std;
 
-struct Occupied;
-
+class Player;
+class Seats;
 class Vehicle
 {   
 	private:
-		string driverName;
 		string vehicleName;
 		int type;
 		vector<Seat> postions;
@@ -57,7 +56,6 @@ class Vehicle
 	public:
 		Vehicle()
 		{
-			driverName = "";
 			vehicleName = "";
 			type = -1;
 			generateSeats(-1);
@@ -65,11 +63,10 @@ class Vehicle
 			cout << endl;
 		};
 
-		Vehicle(string dName, string vName)
+		Vehicle(string vName)
 		{
 			int space;
 			string temp;
-			driverName = dName;
 			vehicleName = vName;
 			
 			space = vName.find(' ');
@@ -85,10 +82,11 @@ class Vehicle
 			generateSeats(type);
 		};
 
-		string getDriverName()
+		void setPassenger(Player& passenger,int location)
 		{
-			return driverName;
-		};
+			postions.at(location).setPlayer(passenger);
+			passenger.setLocation(postions.at(location));
+		}
 
 		string getVehicleName()
 		{
@@ -109,6 +107,8 @@ class Vehicle
 		{
 			return postions;
 		};
+
+		friend void generatorListOfSeats(list<Vehicle>&, list<Seat*>&);
 };
 
 

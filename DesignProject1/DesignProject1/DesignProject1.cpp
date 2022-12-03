@@ -29,9 +29,14 @@ int main()
     
     list<Vehicle> cars;
     list<Player> dodgers;
+    list<Seat*> location;
     int choose = -1;
 
     readInPlayer(cars,dodgers);
+    generatorListOfSeats(cars,location);
+    
+    cout << location.back()->getPoints() << endl;
+
     cout << "Welcome Dodgers to Your Reservation Systems" << endl;
 
     do

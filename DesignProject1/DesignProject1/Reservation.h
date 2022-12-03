@@ -48,8 +48,9 @@ void readInPlayer(list<Vehicle>& cars, list<Player>& dodgers)
 
         if (!(isdigit(temp.front())))
         {
-            cars.push_back(Vehicle(name, temp));
+            cars.push_back(Vehicle(temp));
             dodgers.push_back(Player(name, -1));
+            cars.back().setPassenger(dodgers.back(),0);
         }
         else
         {
@@ -124,8 +125,9 @@ void vehicleRooster(list<Vehicle> cars)
     vector<Seat> postions;
 
     cout << setw(15) << left << "Vehicle" << "|";
-    cout << setw(12) << "Resevation Status" << endl;
-    cout << setfill('-') << setw(35) << right << ' ' << endl;
+    cout << setw(15) << left << "Driver" << "|";
+    cout << setw(17) << "Resevation Status" << endl;
+    cout << setfill('-') << setw(50) << right << ' ' << endl;
     cout << setfill(' ');
 
     for (auto it : cars)
@@ -134,6 +136,8 @@ void vehicleRooster(list<Vehicle> cars)
         cout << setw(15) << left << it.getVehicleName() << "|";
         postions = it.getSeat();
 
+        cout << setw(15) << it.getSeat().at(0).getPlayer()->getName() << "|";
+        
         for (auto loop : postions)
         {
             if (!loop.getReserved()) 
@@ -143,9 +147,9 @@ void vehicleRooster(list<Vehicle> cars)
         }
 
         if(status)
-            cout << right << setw(15) << "Full" << endl;
+            cout << right << setw(17) << "Full" << endl;
         else
-            cout << right << setw(15) << "Seats Available" << endl;
+            cout << right << setw(17) << "Seats Available" << endl;
     }
 }
 
@@ -167,5 +171,16 @@ void playerRooster(list<Player> dodgers)
    
 }
 
+void generatorListOfSeats(list<Vehicle>& cars, list<Seat*> & location)
+{
+    for (auto it : cars)
+    {
+
+        for (auto loop : postions)
+        {
+            location.push_back(*loop);
+        }
+    }
+}
 #endif
 
