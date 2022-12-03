@@ -23,7 +23,7 @@ class Player
 	public:
 		Player()
 		{
-			playerName = "";
+			playerName = "None";
 			playerPoint = 0;
 		};
 
@@ -33,12 +33,14 @@ class Player
 			playerPoint = points;
 		};
 
-		void displayPlayer()
+		string getName()
 		{
-			if(playerPoint != -1)
-				cout << "The player " << playerName << " has " << playerPoint << " credits lefts." << endl;
-			else
-				cout << "The player " << playerName << " is a driver." << endl;
+			return playerName;
+		};
+
+		int getPoints()
+		{
+			return playerPoint;
 		};
 }; 
 #endif

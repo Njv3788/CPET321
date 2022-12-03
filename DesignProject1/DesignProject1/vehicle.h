@@ -14,9 +14,11 @@
 #include <vector>
 #include "player.h"
 #include "seat.h"
+#include "Reservation.h"
 
 using namespace std;
 
+struct Occupied;
 
 class Vehicle
 {   
@@ -26,12 +28,11 @@ class Vehicle
 		int type;
 		vector<Seat> postions;
 		
-
 		void generateSeats(int type)
 		{
 			vector<int> p { -1,5 };
 			vector<int> c { -1,5,3,3};
-			vector<int> s { -1,0,5,2,1,2};
+			vector<int> s { -1,5,2,1,2};
 
 			switch (type)
 			{
@@ -84,41 +85,6 @@ class Vehicle
 			generateSeats(type);
 		};
 
-		void displayVehicle()
-		{
-			int i = 0;
-			switch (type)
-			{
-			case 0:
-				for (auto it : postions)
-				{
-					it.display();
-				}
-				break;
-			case 1:
-				for (auto it : postions)
-				{
-					it.display();
-					i++;
-					if (i == 2)
-						cout << endl;
-				}
-				break;
-			case 2:
-				for (auto it : postions)
-				{
-					it.display();
-					i++;
-					if (i == 3)
-						cout << endl;
-				}
-				break;
-			default:
-				break;
-			}
-			cout << endl;
-		}
-
 		string getDriverName()
 		{
 			return driverName;
@@ -129,5 +95,21 @@ class Vehicle
 			return vehicleName;
 		};
 
+		int getVehicleTypeNum()
+		{
+			return type;
+		};
+
+		Seat getSeat(int location)
+		{
+			return postions.at(location);
+		};
+
+		vector<Seat> getSeat()
+		{
+			return postions;
+		};
 };
+
+
 #endif

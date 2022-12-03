@@ -12,6 +12,7 @@
 #include <fstream>
 #include <string>
 #include <list>
+#include "player.h"
 
 using namespace std;
 
@@ -20,35 +21,42 @@ class Seat
 	private:
 		int points;
 		bool reserved;
+	    Player *passenger;
 	public:
 		Seat()
 		{
 			reserved = false;
 			points = 0;
+			passenger = new Player();
 		};
 		Seat(int p)
 		{
-			reserved = false;
+			if (p < 1)
+				reserved = true;
+			else
+				reserved = false;
 			points = p;
+			passenger = new Player();
 		};
 
-		void display()
+		int getPoints()
 		{
-			if (points == 0) 
-			{
-				cout << "   ";
-			}
-			else if (points == -1)
-			{
-				cout << "(D)";
-			}
-			else if (reserved == false)
-			{
-				cout << "(" << points << ")";
-			}
-			else
-				cout << "(X)";
-		};
+			return points;
+		}
+		bool getReserved()
+		{
+			return reserved;
+		}
+		void setPlayer(Player& dodger)
+		{
+			passenger = &dodger;
+		}
+
+		Player* getPlayer()
+		{
+			return passenger;
+		}
 };
+
 #endif
 
