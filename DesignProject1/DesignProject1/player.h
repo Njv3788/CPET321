@@ -52,5 +52,13 @@ class Player
 		{
 			loaction = &postion;
 		}
+		Seat * getLocation()
+		{
+			return loaction;
+		}
+		Player* getPointer()
+		{
+			return this;
+		}
 }; 
 #endif
