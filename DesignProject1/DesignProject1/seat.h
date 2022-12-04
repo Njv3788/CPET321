@@ -28,7 +28,7 @@ class Seat
 		{
 			reserved = false;
 			points = 0;
-			passenger = new Player();
+			passenger = NULL;
 		};
 		Seat(int p)
 		{
@@ -56,6 +56,10 @@ class Seat
 		Player* getPlayer()
 		{
 			return passenger;
+		}
+		Seat* getPointer()
+		{
+			return this;
 		}
 };
 

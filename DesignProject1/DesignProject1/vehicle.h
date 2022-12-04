@@ -98,9 +98,9 @@ class Vehicle
 			return type;
 		};
 
-		Seat getSeat(int location)
+		Seat * getSeat(int location)
 		{
-			return postions.at(location);
+			return &postions.at(location);
 		};
 
 		vector<Seat> getSeat()
@@ -108,7 +108,11 @@ class Vehicle
 			return postions;
 		};
 
-		friend void generatorListOfSeats(list<Vehicle>&, list<Seat*>&);
+		Vehicle* getPointer()
+		{
+			return this;
+		};
+		friend vector<Seat*> generatorListOfSeats(list<Vehicle>&);
 };
 
 

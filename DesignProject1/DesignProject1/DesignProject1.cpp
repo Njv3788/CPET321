@@ -15,9 +15,11 @@ int  mainMenu()
     int choose;
 
     cout << "Choose what waht yoyu want to do" << endl;
-    cout << "(1)  : Display Dodger Rooster" << endl;
-    cout << "(2)  : Display Seat Rooster" << endl;
-    cout << "(3)  : Display Vehicle Rooster" << endl;
+    cout << "(1)  : View Dodger Rooster" << endl;
+    cout << "(2)  : View Seat Assignment" << endl;
+    cout << "(3)  : Make a Reveration  By Choosing a Car" << endl;
+    cout << "(4)  : Make a Reveration  By Choosing a Seat" << endl;
+    cout << "(5)  : Remove a Reservation" << endl;
     cout << "(-1) : Quit" << endl;
     cin >> choose;
 
@@ -29,13 +31,13 @@ int main()
     
     list<Vehicle> cars;
     list<Player> dodgers;
-    list<Seat*> location;
+    vector<Seat*> location;
     int choose = -1;
+    bool able;
+    Player* user;
 
     readInPlayer(cars,dodgers);
-    generatorListOfSeats(cars,location);
-    
-    cout << location.back()->getPoints() << endl;
+    location = generatorListOfSeats(cars);
 
     cout << "Welcome Dodgers to Your Reservation Systems" << endl;
 
@@ -54,7 +56,24 @@ int main()
                 seatRooster(cars);
                 break;
             case 3:
-                vehicleRooster(cars);
+                playerRooster(dodgers);
+                user = able2Res(dodgers); system("cls");
+                if (user != NULL)
+                {
+                    vehicleRooster(cars);
+                }
+                break;
+            case 4:
+                playerRooster(dodgers);
+                user= able2Res(dodgers); system("cls");
+                if (user != NULL)
+                {
+
+                }
+                break;
+            case 5:
+                playerRooster(dodgers);
+                user = able2Rmv(dodgers); system("cls");
                 break;
             default:
                 break;
