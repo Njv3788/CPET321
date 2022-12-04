@@ -21,23 +21,17 @@ class Seat
 {
 	private:
 		int points;
-		bool reserved;
 	    Player *passenger;
 	public:
 		Seat()
 		{
-			reserved = false;
 			points = 0;
 			passenger = NULL;
 		};
 		Seat(int p)
 		{
-			if (p < 1)
-				reserved = true;
-			else
-				reserved = false;
 			points = p;
-			passenger = new Player();
+			passenger = NULL;
 		};
 
 		int getPoints()
@@ -46,11 +40,15 @@ class Seat
 		}
 		bool getReserved()
 		{
-			return reserved;
+			return passenger != NULL;
 		}
 		void setPlayer(Player& dodger)
 		{
 			passenger = &dodger;
+		}
+		void removePlayer()
+		{
+			passenger = NULL;
 		}
 
 		Player* getPlayer()

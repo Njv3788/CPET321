@@ -52,13 +52,30 @@ class Player
 		{
 			loaction = &postion;
 		}
+		
 		Seat * getLocation()
 		{
 			return loaction;
 		}
+		
 		Player* getPointer()
 		{
 			return this;
+		}
+		
+		void takePoints(int amount)
+		{
+			playerPoint -= amount;
+		}
+
+		void addPoints(int amount)
+		{
+			playerPoint += amount;
+		}
+
+		void removeSeat()
+		{
+			loaction = NULL;
 		}
 }; 
 #endif

@@ -12,20 +12,21 @@
 #include <iomanip>
 #include <string>
 #include <list>
+#include <set>
 #include "seat.h"
 #include "vehicle.h" 
 #include "player.h"
 
+
 using namespace std;
 template <typename T>
     T* select(list<T>& container)
-    {   
-        bool right = true;
+    {  
         int input;
         T* lookHere = NULL;
-
         do
-        {
+        {   
+            cout << "[Input number by name to select]" << endl;
             cin >> input;
             if (input <= container.size())
             {
@@ -36,14 +37,12 @@ template <typename T>
             else
             {
                 cout << "Not a memebr of the list" << endl;
-                right = false;
             }
                 
-        } while (!right);
+        } while (lookHere == NULL);
 
         return lookHere;
     }
-
 Player* able2Res(list<Player>& dodgers)
 {
     int input;
@@ -51,19 +50,24 @@ Player* able2Res(list<Player>& dodgers)
 
     cout << "Who is changing their Resevation status?" << endl;
     cout << "[Input number by mname to select]" << endl;
-    cin >> input;
     
     lookHere = select(dodgers);
     input = lookHere->getPoints();
 
-    if (input == -1)
-        cout << "Dodger is Driver, unable to change Resevation status." << endl;
+    cout << input << endl; 
+    system("cls");
+    if (lookHere->getLocation() != NULL)
+    {
+        cout << "Dodger is already has a reservation." << endl;
+        lookHere = NULL;
+    }
     else
         if (input == 0) 
+        { 
             cout << "Dodger has no points, unable to change Resevation status." << endl;
-        else 
             lookHere = NULL;
-
+        }
+           
     return lookHere;
 }
 
@@ -71,24 +75,24 @@ Player* able2Rmv(list<Player>& dodgers)
 {
     Player* hereLook = NULL;
     Seat* lookHere;
-    int input;
 
     cout << "Who is changing their Resevation status?" << endl;
     cout << "[Input number by mname to select]" << endl;
-    cin >> input;
-
-    list<Player>::iterator it = dodgers.begin();
-    advance(it, input - 1);
-    lookHere = it->getLocation();
+    
+    hereLook = select(dodgers);
+    lookHere = hereLook->getLocation();
 
     if (lookHere == NULL)
-        cout << "Dodger isn't in a car" << endl;
+    {
+        cout << "Dodger isn't in a car" << endl; 
+        hereLook = NULL;
+    }    
     else
         if (lookHere->getPoints() == -1)
+        {
             cout << "Dodger is a Driver" << endl;
-        else
-            hereLook = it->getPointer();
-
+            hereLook = NULL;
+        }
     return hereLook;
 }
 
@@ -186,10 +190,17 @@ void seatRooster(list<Vehicle> cars)
             }
             reserved = loop.getReserved();
             if (reserved)
+            {
                 cout << right << setw(17) << "Resereved" << "|";
+                cout << setw(15) << loop.getPlayer()->getName()<< endl;
+            }
             else
+            {
                 cout << right << setw(17) << "Open" << "|";
-            cout << setw(15) << loop.getPlayer()->getName()<< endl;
+                cout << setw(15) << "None" << endl;
+            }
+                
+            
         }
     }
 
@@ -290,10 +301,133 @@ vector<Seat*> generatorListOfSeats(list<Vehicle>& cars)
     {
         for (int j = 0; j < it.postions.size(); j++)
         {
-            location.push_back(it.getSeat(j));
+            cout << it.getSeat(j)->getPointer() << endl;
+            location.push_back(it.getSeat(j)->getPointer());
         }
     }
+    cout << endl;
     return location;
 };
+
+void reservedSeatViaCar(Vehicle *car, Player *dodger)
+{
+    vector<Seat> postions = car->getSeat();
+    set<int> types;
+    bool loop = false;
+    int input;
+    int cnt = 0;
+    for (auto it : postions) types.insert(it.getPoints());
+    
+    do
+    { 
+        system("cls");
+        cout << "The " << car->getVehicleName() << " seats:" << endl;
+        cout << setw(4) << right << "|";
+        cout << setw(15) << left << "Type of Seats" << "|";
+        cout << setw(5) << left << "Points" << endl;
+        cout << setfill('-') << setw(49) << right << ' ' << endl;
+        cout << setfill(' ');
+    
+        for (auto it : types)
+        {
+            cout << setw(4) << right << "|";
+            switch (it)
+            {
+                case -1:
+                    cout << setw(15) << left << "Driver" << "|";
+                    break;
+                case  1:
+                    cout << setw(15) << left << "Center Back" << "|";
+                    break;
+                case  2:
+                    cout << setw(15) << left << "Side Back" << "|";
+                    break;
+                case  3:
+                    cout << setw(15) << left << "Compact Back" << "|";
+                    break;
+                case  5:
+                    cout << setw(15) << left << "Passenger" << "|" ;
+                    break;
+            }
+            if(it == -1)
+                cout << setw(5) << right << "N/A" << endl;
+            else
+                cout << setw(5) << right << it << endl;
+        }  
+        cout <<"Dodger points : " << dodger->getPoints() << endl;
+        cout << "[Select by selecting point value]" << endl;
+        cin >> input;
+        if (types.find(input) == types.end())
+        {
+            cout << "Not a reseverable seat" << endl;
+            loop = true;
+            system("pause");
+        }
+        else
+            if (input == -1)
+            {
+                cout << "Not a reseverable seat" << endl;
+                loop = true;
+                system("pause");
+            }
+            else
+            {
+                loop = false;
+            }
+    } while (loop);
+
+    if (dodger->getPoints() >= input)
+    {
+        cout << "You have enough points" << endl;
+        for (auto it : postions)
+        {
+            if (it.getPoints() == input)
+            {
+                if (!it.getReserved())
+                {
+                    loop = true;
+                    break;
+                }
+                else
+                {  
+                    cnt++;
+                    loop = false;
+                }
+            }
+            else
+            {
+                cnt++;
+                loop = false;
+            }
+        }
+
+        if (loop)
+        {
+            car->setPassenger(*dodger, cnt);
+            dodger->takePoints(input);
+            cout << "Reservation has been made " << endl;
+        }
+        else
+            cout << "No seat of that type available" << endl;
+                    
+    }
+    else
+    {
+        cout << "You don't have enough points, can't reserve a seat" << endl;
+    }
+}
+
+void removeReserved(Player* dodger)
+{
+    Seat* remove;
+    remove = dodger->getLocation();
+    dodger->addPoints(remove->getPoints());
+    remove->removePlayer();
+    dodger->removeSeat();
+
+    cout << "Reservation is removed" << endl;
+    cout << "Dodger points : " << dodger->getPoints() << endl;
+}
+
 #endif
 
