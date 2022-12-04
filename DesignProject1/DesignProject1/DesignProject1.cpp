@@ -33,11 +33,13 @@ int main()
     list<Player> dodgers;
     vector<Seat*> location;
     int choose = -1;
-    bool able;
     Player* user;
+    Vehicle* assign;
 
     readInPlayer(cars,dodgers);
     location = generatorListOfSeats(cars);
+    for (auto it : location)
+        cout << it->getPointer() << endl;
 
     cout << "Welcome Dodgers to Your Reservation Systems" << endl;
 
@@ -57,23 +59,31 @@ int main()
                 break;
             case 3:
                 playerRooster(dodgers);
-                user = able2Res(dodgers); system("cls");
+                user = able2Res(dodgers);
                 if (user != NULL)
-                {
+                { 
+                    system("cls");
                     vehicleRooster(cars);
+                    assign = select(cars);
+                    reservedSeatViaCar(assign, user);
                 }
                 break;
             case 4:
                 playerRooster(dodgers);
-                user= able2Res(dodgers); system("cls");
+                user= able2Res(dodgers);
                 if (user != NULL)
-                {
-
+                {   
+                    system("cls");
+                    cout << "Make reservation" << endl;
                 }
                 break;
             case 5:
                 playerRooster(dodgers);
-                user = able2Rmv(dodgers); system("cls");
+                user = able2Rmv(dodgers); 
+                if (user != NULL)
+                {
+                    removeReserved(user);
+                }
                 break;
             default:
                 break;
