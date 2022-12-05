@@ -24,58 +24,24 @@ class Player
 		Seat *loaction;
 	
 	public:
-		Player()
-		{
-			playerName = "None";
-			playerPoint = 0;
-			loaction = NULL;
-		};
+		Player();
 
-		Player(string player, int points)
-		{
-			playerName = player;
-			playerPoint = points;
-			loaction = NULL;
-		};
+		Player(string player, int points);
 
-		string getName()
-		{
-			return playerName;
-		};
+		string getName();
 
-		int getPoints()
-		{
-			return playerPoint;
-		};
+		int getPoints();
 		
-		void setLocation(Seat * postion)
-		{
-			loaction = postion;
-		}
+		void setLocation(Seat* postion);
 		
-		Seat * getLocation()
-		{
-			return loaction;
-		}
+		Seat* getLocation();
 		
-		Player* getPointer()
-		{
-			return this;
-		}
+		Player* getPointer();
 		
-		void takePoints(int amount)
-		{
-			playerPoint -= amount;
-		}
+		void takePoints(int amount);
 
-		void addPoints(int amount)
-		{
-			playerPoint += amount;
-		}
+		void addPoints(int amount);
 
-		void removeSeat()
-		{
-			loaction = NULL;
-		}
+		void removeSeat();
 }; 
 #endif

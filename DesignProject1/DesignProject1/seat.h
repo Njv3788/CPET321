@@ -13,52 +13,38 @@
 #include <string>
 #include <list>
 #include "player.h"
+#include "vehicle.h" 
 
 using namespace std;
 
 class Player;
+
+class Vehicle;
+
 class Seat
 {
 	private:
 		int points;
 	    Player *passenger;
+		Vehicle* car;
 	public:
-		Seat()
-		{
-			points = 0;
-			passenger = NULL;
-		};
-		Seat(int p)
-		{
-			points = p;
-			passenger = NULL;
-		};
+		Seat();
 
-		int getPoints()
-		{
-			return points;
-		}
-		bool getReserved()
-		{
-			return passenger != NULL;
-		}
-		void setPlayer(Player& dodger)
-		{
-			passenger = &dodger;
-		}
-		void removePlayer()
-		{
-			passenger = NULL;
-		}
+		Seat(int p, Vehicle* car);
 
-		Player* getPlayer()
-		{
-			return passenger;
-		}
-		Seat* getPointer()
-		{
-			return this;
-		}
+		int getPoints();
+
+		bool getReserved();
+
+		void setPlayer(Player& dodger);
+
+		void removePlayer();
+
+		Player* getPlayer();
+
+		Seat* getPointer();
+
+		Vehicle* getVehicle();
 };
 
 #endif

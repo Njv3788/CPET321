@@ -7,6 +7,7 @@
 #include "Reservation.h"
 #include "vehicle.h" 
 #include "player.h"
+#include "seat.h"
 #include "Rooster.h"
 
 using namespace std;

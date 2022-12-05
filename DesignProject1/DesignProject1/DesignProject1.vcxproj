@@ -140,6 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DesignProject1.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Reservation.cpp" />
+    <ClCompile Include="Rooster.cpp" />
+    <ClCompile Include="Seat.cpp" />
+    <ClCompile Include="Vehicle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Reservation.h" />
