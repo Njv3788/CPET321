@@ -20,9 +20,6 @@
 
 using namespace std;
 
-
-
-
 void reservedSeatViaCar(Vehicle *car, Player *dodger)
 {
     vector<Seat*> postions = car->getSeat();
