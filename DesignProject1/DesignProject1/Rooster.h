@@ -17,6 +17,8 @@
 #include "vehicle.h" 
 #include "player.h"
 
+using namespace std;
+
 template <typename T>
 T* select(list<T>& container)
 {
@@ -147,10 +149,9 @@ void seatRooster(list<Vehicle> cars)
     cout << setw(4) << right << "|";
     cout << setw(15) << left << "Vehicle" << "|";
     cout << setw(15) << "Type of seat" << "|";
-    cout << setw(6) << "Points" << "|";
     cout << setw(15) << "Resevation Status" << "|";
     cout << setw(15) << "Dodger " << endl;
-    cout << setfill('-') << setw(77) << right << ' ' << endl;
+    cout << setfill('-') << setw(70) << right << ' ' << endl;
     cout << setfill(' ');
 
     for (auto it : cars)
@@ -167,23 +168,18 @@ void seatRooster(list<Vehicle> cars)
             {
             case -1:
                 cout << setw(15) << "Driver" << "|";
-                cout << setw(6) << right << "N/A" << "|";
                 break;
             case  1:
                 cout << setw(15) << "Center Back" << "|";
-                cout << setw(6) << right << points << "|";
                 break;
             case  2:
                 cout << setw(15) << "Side Back" << "|";
-                cout << setw(6) << right << points << "|";
                 break;
             case  3:
                 cout << setw(15) << "Compact Back" << "|";
-                cout << setw(6) << right << points << "|";
                 break;
             case  5:
                 cout << setw(15) << "Passenger" << "|";
-                cout << setw(6) << right << points << "|";
                 break;
             }
             reserved = loop->getReserved();
@@ -197,7 +193,6 @@ void seatRooster(list<Vehicle> cars)
                 cout << right << setw(17) << "Open" << "|";
                 cout << setw(15) << "None" << endl;
             }
-
 
         }
     }
@@ -360,7 +355,7 @@ void printRooster(list<Vehicle>& cars)
     outFile << setw(15) << "Type of seat" << "|";
     outFile << setw(15) << "Resevation Status" << "|";
     outFile << setw(15) << "Dodger " << endl;
-    outFile << setfill('-') << setw(71) << right << ' ' << endl;
+    outFile << setfill('-') << setw(70) << right << ' ' << endl;
     outFile << setfill(' ');
 
     for (auto it : cars)
@@ -417,6 +412,7 @@ void printRooster(Vehicle& car)
     bool reserved;
     int cnt = 1;
     
+    temp = car.getVehicleName();
     do
     // loop until all space are out of playlist name
     {
@@ -445,7 +441,7 @@ void printRooster(Vehicle& car)
     outFile << setw(15) << "Type of seat" << "|";
     outFile << setw(15) << "Resevation Status" << "|";
     outFile << setw(15) << "Dodger " << endl;
-    outFile << setfill('-') << setw(71) << right << ' ' << endl;
+    outFile << setfill('-') << setw(70) << right << ' ' << endl;
     outFile << setfill(' ');
 
     postions = car.getSeat();

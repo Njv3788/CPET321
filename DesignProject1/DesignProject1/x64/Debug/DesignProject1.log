@@ -1,4 +1,4 @@
 ﻿  DesignProject1.cpp
-S:\Documents\CPET321\DesignProject1\DesignProject1\vehicle.h(77,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-S:\Documents\CPET321\DesignProject1\DesignProject1\Rooster.h(423,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  DesignProject1.vcxproj -> S:\Documents\CPET321\DesignProject1\x64\Debug\DesignProject1.exe
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\vehicle.h(77,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\Rooster.h(417,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  DesignProject1.vcxproj -> C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\x64\Debug\DesignProject1.exe
