@@ -1,4 +1,21 @@
 ﻿  DesignProject1.cpp
-C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\vehicle.h(77,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\Rooster.h(417,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  DesignProject1.vcxproj -> C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\x64\Debug\DesignProject1.exe
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\vehicle.h(46,25): error C2027: use of undefined type 'Seat'
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\player.h(18): message : see declaration of 'Seat'
+  Player.cpp
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\vehicle.h(46,25): error C2027: use of undefined type 'Seat'
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\player.h(18): message : see declaration of 'Seat'
+  Reservation.cpp
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\vehicle.h(46,25): error C2027: use of undefined type 'Seat'
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\player.h(18): message : see declaration of 'Seat'
+  Rooster.cpp
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\vehicle.h(46,25): error C2027: use of undefined type 'Seat'
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\player.h(18): message : see declaration of 'Seat'
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\Rooster.cpp(442,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Seat.cpp
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\vehicle.h(46,25): error C2027: use of undefined type 'Seat'
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\player.h(18): message : see declaration of 'Seat'
+  Vehicle.cpp
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\vehicle.h(46,25): error C2027: use of undefined type 'Seat'
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\player.h(18): message : see declaration of 'Seat'
+C:\Users\Ship Of Fools\OneDrive\Documents\GitHub\CPET321\DesignProject1\DesignProject1\Vehicle.cpp(60,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...

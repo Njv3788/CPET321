@@ -18,7 +18,6 @@
 
 using namespace std;
 
-class Player;
 class Seats;
 class Vehicle
 {   
@@ -27,91 +26,24 @@ class Vehicle
 		int type;
 		vector<Seat*> postions;
 		
-		void generateSeats(int type, list<Seat>& locations)
-		{
-			vector<int> p { -1,5 };
-			vector<int> c { -1,5,3,3};
-			vector<int> s { -1,5,2,1,2};
-
-			switch (type)
-			{
-				case 0:
-					for (int i = 0; i < p.size(); i++)
-					{
-						locations.push_back(Seat(p.at(i)));
-						postions.push_back( locations.back().getPointer());
-					}
-						
-					break;
-				case 1:
-					for (int i = 0; i < c.size(); i++)
-					{
-						locations.push_back(Seat(c.at(i)));
-						postions.push_back(locations.back().getPointer());
-					}
-					break;
-				case 2:
-					for (int i = 0; i < s.size(); i++)
-					{
-						locations.push_back(Seat(s.at(i)));
-						postions.push_back(locations.back().getPointer());
-					}
-					break;
-			}
-		}
+		void generateSeats(int type, list<Seat>& locations);
 
 	public:
-		Vehicle()
-		{
-			vehicleName = "";
-			type = -1;
-			cout << endl;
-		};
+		Vehicle();
 
-		Vehicle(string vName, list<Seat>& locations)
-		{
-			int space;
-			string temp;
-			vehicleName = vName;
-			
-			space = vName.find(' ');
-			temp = vName.substr(space+1, vName.size());
+		Vehicle(string vName, list<Seat>& locations);
 
-			if(temp == "Pickup"){ type = 0; }
-			else 
-				if (temp == "Compact"){ type = 1; }
-				else 
-					if (temp == "Sudan"){ type = 2; }
-					else type = -1;
-			
-			generateSeats(type, locations);
-		};
+		void setPassenger(Player& passenger, int location);
 
-		void setPassenger(Player& passenger,int location)
-		{
-			postions.at(location)->setPlayer(passenger);
-			passenger.setLocation(postions.at(location));
-		}
+		string getVehicleName();
 
-		string getVehicleName()
-		{
-			return vehicleName;
-		};
+		int getVehicleTypeNum();
 
-		int getVehicleTypeNum()
-		{
-			return type;
-		};
+		vector<Seat*> getSeat();
 
-		vector<Seat*> getSeat()
-		{
-			return postions;
-		};
-
-		Vehicle* getPointer()
-		{
-			return this;
-		};
+		Vehicle* getPointer();
+		
+		friend Vehicle* Seat::getVehicle();
 };
 
 
