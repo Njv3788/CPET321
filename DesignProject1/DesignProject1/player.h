@@ -48,9 +48,9 @@ class Player
 			return playerPoint;
 		};
 		
-		void setLocation(Seat & postion)
+		void setLocation(Seat * postion)
 		{
-			loaction = &postion;
+			loaction = postion;
 		}
 		
 		Seat * getLocation()

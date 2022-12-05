@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Reservation.h" />
+    <ClInclude Include="Rooster.h" />
     <ClInclude Include="seat.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="vehicle.h" />
