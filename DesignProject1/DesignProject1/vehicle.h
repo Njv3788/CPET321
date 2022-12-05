@@ -25,9 +25,9 @@ class Vehicle
 	private:
 		string vehicleName;
 		int type;
-		vector<Seat> postions;
+		vector<Seat*> postions;
 		
-		void generateSeats(int type)
+		void generateSeats(int type, list<Seat>& locations)
 		{
 			vector<int> p { -1,5 };
 			vector<int> c { -1,5,3,3};
@@ -37,19 +37,26 @@ class Vehicle
 			{
 				case 0:
 					for (int i = 0; i < p.size(); i++)
-						postions.push_back(Seat(p.at(i)));
+					{
+						locations.push_back(Seat(p.at(i)));
+						postions.push_back( locations.back().getPointer());
+					}
+						
 					break;
 				case 1:
 					for (int i = 0; i < c.size(); i++)
-						postions.push_back(Seat(c.at(i)));
+					{
+						locations.push_back(Seat(c.at(i)));
+						postions.push_back(locations.back().getPointer());
+					}
 					break;
 				case 2:
 					for (int i = 0; i < s.size(); i++)
-						postions.push_back(Seat(s.at(i)));
+					{
+						locations.push_back(Seat(s.at(i)));
+						postions.push_back(locations.back().getPointer());
+					}
 					break;
-				default:
-						postions.push_back(Seat(-1));
-						break;
 			}
 		}
 
@@ -58,12 +65,10 @@ class Vehicle
 		{
 			vehicleName = "";
 			type = -1;
-			generateSeats(-1);
-			
 			cout << endl;
 		};
 
-		Vehicle(string vName)
+		Vehicle(string vName, list<Seat>& locations)
 		{
 			int space;
 			string temp;
@@ -79,12 +84,12 @@ class Vehicle
 					if (temp == "Sudan"){ type = 2; }
 					else type = -1;
 			
-			generateSeats(type);
+			generateSeats(type, locations);
 		};
 
 		void setPassenger(Player& passenger,int location)
 		{
-			postions.at(location).setPlayer(passenger);
+			postions.at(location)->setPlayer(passenger);
 			passenger.setLocation(postions.at(location));
 		}
 
@@ -98,12 +103,7 @@ class Vehicle
 			return type;
 		};
 
-		Seat * getSeat(int location)
-		{
-			return &postions.at(location);
-		};
-
-		vector<Seat> getSeat()
+		vector<Seat*> getSeat()
 		{
 			return postions;
 		};
@@ -112,7 +112,6 @@ class Vehicle
 		{
 			return this;
 		};
-		friend vector<Seat*> generatorListOfSeats(list<Vehicle>&);
 };
 
 
