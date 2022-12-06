@@ -30,7 +30,9 @@ class Seat
 	public:
 		Seat();
 
-		Seat(int p, Vehicle* car);
+		Seat(int p);
+
+		Seat(int p, Vehicle* fuck);
 
 		int getPoints();
 
@@ -45,6 +47,8 @@ class Seat
 		Seat* getPointer();
 
 		Vehicle* getVehicle();
+
+		void setVehicle(Vehicle* Automotive);
 };
 
 #endif

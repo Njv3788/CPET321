@@ -12,7 +12,7 @@
 
 using namespace std;
 
-void Vehicle::generateSeats(int type, list<Seat>& locations)
+void Vehicle::generateSeats(int type, list<Seat*>& locations)
 {
 	vector<int> p{ -1,5 };
 	vector<int> c{ -1,5,3,3 };
@@ -23,23 +23,22 @@ void Vehicle::generateSeats(int type, list<Seat>& locations)
 	case 0:
 		for (int i = 0; i < p.size(); i++)
 		{
-			locations.push_back(Seat(p.at(i),this->getPointer()));
-			postions.push_back(locations.back().getPointer());
+			locations.push_back(new Seat(p.at(i), this));
+			postions.push_back(locations.back()->getPointer());
 		}
-
 		break;
 	case 1:
 		for (int i = 0; i < c.size(); i++)
 		{
-			locations.push_back(Seat(c.at(i), this->getPointer()));
-			postions.push_back(locations.back().getPointer());
+			locations.push_back(new Seat(c.at(i),this));
+			postions.push_back(locations.back()->getPointer());
 		}
 		break;
 	case 2:
 		for (int i = 0; i < s.size(); i++)
 		{
-			locations.push_back(Seat(s.at(i), this->getPointer()));
-			postions.push_back(locations.back().getPointer());
+			locations.push_back(new Seat(s.at(i),this));
+			postions.push_back(locations.back()->getPointer());
 		}
 		break;
 	}
@@ -51,7 +50,7 @@ Vehicle::Vehicle()
 	type = -1;
 };
 
-Vehicle::Vehicle(string vName, list<Seat>& locations)
+Vehicle::Vehicle(string vName, list<Seat*>& locations)
 {
 	int space;
 	string temp;
@@ -72,8 +71,10 @@ Vehicle::Vehicle(string vName, list<Seat>& locations)
 
 void Vehicle::setPassenger(Player& passenger, int location)
 {
-	postions.at(location)->setPlayer(passenger);
-	passenger.setLocation(postions.at(location));
+	auto it = postions.begin();
+	advance(it, location);
+	(*it)->setPlayer(passenger);
+	passenger.setLocation(*it);
 }
 
 string Vehicle::getVehicleName()
@@ -86,7 +87,7 @@ int Vehicle::getVehicleTypeNum()
 	return type;
 };
 
-vector<Seat*> Vehicle::getSeat()
+list<Seat*> Vehicle::getSeat()
 {
 	return postions;
 };
