@@ -1,0 +1,35 @@
+   |Dodger              |Points |Seat Assigned  |Vehicle Assigned  
+------------------------------------------------------------------ 
+  1|Pat Cooper          |    n/a|         Driver|    Purple Pickup
+  2|Jane Cox            |    n/a|         Driver|     Green Pickup
+  3|Tim Taylor          |    n/a|         Driver|     Black Pickup
+  4|Ben Butler          |    n/a|         Driver|      Red Compact
+  5|Art Campbell        |    n/a|         Driver|     Blue Compact
+  6|Ann Edwards         |    n/a|         Driver|   Yellow Compact
+  7|Grace Wan           |    n/a|         Driver|       Blue Sudan
+  8|Lary Adams          |    n/a|         Driver|      Black Sudan
+  9|Jessie Quirk        |    n/a|         Driver|      Green Sudan
+ 10|Pam Allen           |      4|           None|             None
+ 11|Tony James          |      4|           None|             None
+ 12|Ron Jones           |      9|           None|             None
+ 13|Will Rogers         |      1|           None|             None
+ 14|Don Williams        |      3|           None|             None
+ 15|Doug Long           |      2|           None|             None
+ 16|Randy Carter        |      6|           None|             None
+ 17|Adam Jenkins        |      8|           None|             None
+ 18|Dan Scott           |      1|           None|             None
+ 19|Ed Patterson        |      7|           None|             None
+ 20|Sarah Ward          |      0|           None|             None
+ 21|Jeff Howard         |      4|           None|             None
+ 22|Amy Bryant          |      8|           None|             None
+ 23|Will Samson         |      2|           None|             None
+ 24|Carl Gray           |      1|           None|             None
+ 25|Sam Miller          |      5|           None|             None
+ 26|Rob Bell            |      2|           None|             None
+ 27|Mary Baker          |      5|           None|             None
+ 28|Peter Torres        |      6|           None|             None
+ 29|Yin Kim             |      0|           None|             None
+ 30|Sammy Vans          |      5|           None|             None
+ 31|Beth Daily          |      9|           None|             None
+ 32|Max Fitzpatrick     |      3|           None|             None
+ 33|Mac Thompson        |      2|           None|             None

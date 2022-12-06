@@ -11,107 +11,8 @@
 
 using namespace std;
 
-Vehicle* select(list<Vehicle>& container)
-{
-    int input;
-    Vehicle* lookHere = NULL;
-    do
-    {
-        cout << "[Input number by name to select]" << endl;
-        cin >> input;
-        if (input <= container.size())
-        {
-            auto it = container.begin();
-            advance(it, input - 1);
-            lookHere = it->getPointer();
-        }
-        else
-        {
-            cout << "Not a memebr of the list" << endl;
-        }
 
-    } while (lookHere == NULL);
-
-    return lookHere;
-}
-
-Player* select(list<Player>& container)
-{
-    int input;
-    Player* lookHere = NULL;
-    do
-    {
-        cout << "[Input number by name to select]" << endl;
-        cin >> input;
-        if (input <= container.size())
-        {
-            auto it = container.begin();
-            advance(it, input - 1);
-            lookHere = it->getPointer();
-        }
-        else
-        {
-            cout << "Not a memebr of the list" << endl;
-        }
-
-    } while (lookHere == NULL);
-
-    return lookHere;
-}
-
-Player* able2Res(list<Player>& dodgers)
-{
-    int input;
-    Player* lookHere;
-
-    cout << "Who is changing their Resevation status?" << endl;
-    cout << "[Input number by mname to select]" << endl;
-
-    lookHere = select(dodgers);
-    input = lookHere->getPoints();
-
-    cout << input << endl;
-    system("cls");
-    if (lookHere->getLocation() != NULL)
-    {
-        cout << "Dodger is already has a reservation." << endl;
-        lookHere = NULL;
-    }
-    else
-        if (input == 0)
-        {
-            cout << "Dodger has no points, unable to change Resevation status." << endl;
-            lookHere = NULL;
-        }
-
-    return lookHere;
-}
-
-Player* able2Rmv(list<Player>& dodgers)
-{
-    Player* hereLook = NULL;
-    Seat* lookHere;
-
-    cout << "Who is changing their Resevation status?" << endl;
-    cout << "[Input number by mname to select]" << endl;
-
-    hereLook = select(dodgers);
-    lookHere = hereLook->getLocation();
-
-    if (lookHere == NULL)
-    {
-        cout << "Dodger isn't in a car" << endl;
-        hereLook = NULL;
-    }
-    else
-        if (lookHere->getPoints() == -1)
-        {
-            cout << "Dodger is a Driver" << endl;
-            hereLook = NULL;
-        }
-    return hereLook;
-}
-void readInPlayer(list<Vehicle>& cars, list<Player>& dodgers, list<Seat>& locations)
+void readInPlayer(list<Vehicle*>& cars, list<Player>& dodgers, list<Seat*>& locations)
 {
     ifstream inFile;
     string name, temp;
@@ -140,9 +41,9 @@ void readInPlayer(list<Vehicle>& cars, list<Player>& dodgers, list<Seat>& locati
 
         if (!(isdigit(temp.front())))
         {
-            cars.push_back(Vehicle(temp, locations));
+            cars.push_back(new Vehicle(temp, locations));
             dodgers.push_back(Player(name, -1));
-            cars.back().setPassenger(dodgers.back(), 0);
+            cars.back()->setPassenger(dodgers.back(), 0);
         }
         else
         {
@@ -151,14 +52,13 @@ void readInPlayer(list<Vehicle>& cars, list<Player>& dodgers, list<Seat>& locati
 
 
     } while (!(inFile.eof()));
+
     return;
 };
 
-void seatRooster(list<Vehicle> cars)
+void seatRooster(list<Seat*>& location)
 {
-    vector<Seat*> postions;
     int points;
-    bool reserved;
     int cnt = 1;
 
     cout << setw(4) << right << "|";
@@ -169,55 +69,50 @@ void seatRooster(list<Vehicle> cars)
     cout << setfill('-') << setw(70) << right << ' ' << endl;
     cout << setfill(' ');
 
-    for (auto it : cars)
+    for (auto it : location)
     {
-        postions = it.getSeat();
+       
+        cout << setw(3) << right << cnt++ << "|";
+        cout << setw(15) << left << it->getVehicle()->getVehicleName() << "|";
+        points = it->getPoints();
 
-        for (auto loop : postions)
+        switch (points)
         {
-            cout << setw(3) << right << cnt++ << "|";
-            cout << setw(15) << left << it.getVehicleName() << "|";
-            points = loop->getPoints();
-
-            switch (points)
-            {
-            case -1:
-                cout << setw(15) << "Driver" << "|";
-                break;
-            case  1:
-                cout << setw(15) << "Center Back" << "|";
-                break;
-            case  2:
-                cout << setw(15) << "Side Back" << "|";
-                break;
-            case  3:
-                cout << setw(15) << "Compact Back" << "|";
-                break;
-            case  5:
-                cout << setw(15) << "Passenger" << "|";
-                break;
-            }
-            reserved = loop->getReserved();
-            if (reserved)
-            {
-                cout << right << setw(17) << "Resereved" << "|";
-                cout << setw(15) << loop->getPlayer()->getName() << endl;
-            }
-            else
-            {
-                cout << right << setw(17) << "Open" << "|";
-                cout << setw(15) << "None" << endl;
-            }
-
+        case -1:
+            cout << setw(15) << "Driver" << "|";
+            break;
+        case  1:
+            cout << setw(15) << "Center Back" << "|";
+            break;
+        case  2:
+            cout << setw(15) << "Side Back" << "|";
+            break;
+        case  3:
+            cout << setw(15) << "Compact Back" << "|";
+            break;
+        case  5:
+            cout << setw(15) << "Passenger" << "|";
+            break;
         }
+
+        if (it->getReserved())
+        {
+            cout << right << setw(17) << "Resereved" << "|";
+            cout << setw(15) << it->getPlayer()->getName() << endl;
+        }
+        else
+        {
+            cout << right << setw(17) << "Open" << "|";
+            cout << setw(15) << "None" << endl;
+        }
+
     }
 
 };
 
-void vehicleRooster(list<Vehicle> cars)
+void vehicleRooster(list<Vehicle*>& cars)
 {
     bool status;
-    vector<Seat*> postions;
     int cnt = 1;
 
     cout << setw(4) << right << "|";
@@ -231,16 +126,16 @@ void vehicleRooster(list<Vehicle> cars)
     {
         status = true;
         cout << setw(3) << right << cnt++ << "|";
-        cout << setw(15) << left << it.getVehicleName() << "|";
-        postions = it.getSeat();
+        cout << setw(15) << left << it->getVehicleName() << "|";
 
-        cout << setw(15) << it.getSeat().at(0)->getPlayer()->getName() << "|";
+        cout << setw(15) << it->getSeat().front()->getPlayer()->getName() << "|";
 
-        for (auto loop : postions)
+        for (auto loop : it->getSeat())
         {
             if (!loop->getReserved())
             {
                 status = false;
+                break;
             }
         }
 
@@ -251,18 +146,17 @@ void vehicleRooster(list<Vehicle> cars)
     }
 }
 
-void playerRooster(list<Player> dodgers)
+void playerRooster(list<Player>& dodgers)
 {
     int cnt = 1;
     int points;
-    Seat* postion;
-    Vehicle* fuck;
+
     cout << setw(4) << right << "|";
     cout << setw(20) << left << "Dodger" << "|";
     cout << setw(7) << "Points" << "|";
-    cout << setw(17) << "Vehicle Assigned" << "|";
-    cout << setw(15) << "Seat Assigned" << endl;
-    cout << setfill('-') << setw(49) << right << ' ' << endl;
+    cout << setw(15) << "Seat Assigned" << "|";
+    cout << setw(18) << "Vehicle Assigned" << endl;
+    cout << setfill('-') << setw(67) << right << ' ' << endl;
     cout << setfill(' ');
 
     for (auto it : dodgers)
@@ -276,50 +170,49 @@ void playerRooster(list<Player> dodgers)
 
         if (it.getLocation() == NULL)
         {
-            cout << setw(17) << "None" << "|";
-            cout << setw(15) << "None" << endl;
+            cout << setw(15) << "None" << "|";
+            cout << setw(17) << "None" << endl;
         }
           
         else
         {
             points = it.getLocation()->getPoints();
-            postion = it.getLocation();
-            fuck = postion->getVehicle();
-            cout << setw(17) << fuck->getVehicleTypeNum() << "|";
             switch (points)
             {
                 case -1:
-                    cout << setw(15) << "Driver" << endl;
+                    cout << setw(15) << "Driver" << "|";
                     break;
                 case  1:
-                    cout << setw(15) << "Center Back" << endl;
+                    cout << setw(15) << "Center Back" << "|";
                     break;
                 case  2:
-                    cout << setw(15) << "Side Back" << endl;
+                    cout << setw(15) << "Side Back" << "|";
                     break;
                 case  3:
-                    cout << setw(15) << "Compact Back" << endl;
+                    cout << setw(15) << "Compact Back" << "|";
                     break;
                 case  5:
-                    cout << setw(15) << "Passenger" << endl;
+                    cout << setw(15) << "Passenger" << "|";
                     break;
-                }
+            }
+            cout << setw(17) << it.getLocation()->getVehicle()->getVehicleName() << endl;
         }
     }
 }
-void printRooster(list<Player> dodgers)
+
+void printRooster(list<Player>& dodgers)
 {
     ofstream outFile;
     int cnt = 1;
-    int points;
 
     outFile.open("Player_Rooster.txt");
 
     outFile << setw(4) << right << "|";
     outFile << setw(20) << left << "Dodger" << "|"; 
     outFile << setw(7) << "Points" << "|";
-    outFile << setw(15) << "Assignment" << endl;
-    outFile << setfill('-') << setw(49) << right << ' ' << endl;
+    outFile << setw(15) << "Seat Assigned" << "|";
+    outFile << setw(18) << "Vehicle Assigned" << endl;
+    outFile << setfill('-') << setw(67) << right << ' ' << endl;
     outFile << setfill(' ');
 
     for (auto it : dodgers)
@@ -331,67 +224,15 @@ void printRooster(list<Player> dodgers)
         else
             outFile << setw(7) << right << it.getPoints() << "|";
 
+
         if (it.getLocation() == NULL)
-            points = 0;
-        else
-            points = it.getLocation()->getPoints();
-
-        switch (points)
         {
-        case -1:
-            outFile << setw(15) << "Driver" << endl;
-            break;
-        case 0:
-            outFile << setw(15) << "None" << endl;
-            break;
-        case  1:
-            outFile << setw(15) << "Center Back" << endl;
-            break;
-        case  2:
-            outFile << setw(15) << "Side Back" << endl;
-            break;
-        case  3:
-            outFile << setw(15) << "Compact Back" << endl;
-            break;
-        case  5:
-            outFile << setw(15) << "Passenger" << endl;
-            break;
+            outFile << setw(15) << "None" << "|";
+            outFile << setw(17) << "None" << endl;
         }
-    }
-
-    outFile.close();
-}
-
-void printRooster(list<Vehicle>& cars)
-{
-    ofstream outFile;
-    int points;
-    bool reserved;
-    int cnt = 1;
-
-    outFile.open("Vehicle_Rooster.txt");
-    vector<Seat*> postions;
-
-
-    outFile << setw(4) << right << "|";
-    outFile << setw(15) << left << "Vehicle" << "|";
-    outFile << setw(15) << "Type of seat" << "|";
-    outFile << setw(15) << "Resevation Status" << "|";
-    outFile << setw(15) << "Dodger " << endl;
-    outFile << setfill('-') << setw(70) << right << ' ' << endl;
-    outFile << setfill(' ');
-
-    for (auto it : cars)
-    {
-        postions = it.getSeat();
-
-        for (auto loop : postions)
+        else
         {
-            outFile << setw(3) << right << cnt++ << "|";
-            outFile << setw(15) << left << it.getVehicleName() << "|";
-            points = loop->getPoints();
-
-            switch (points)
+            switch (it.getLocation()->getPoints())
             {
             case -1:
                 outFile << setw(15) << "Driver" << "|";
@@ -409,8 +250,55 @@ void printRooster(list<Vehicle>& cars)
                 outFile << setw(15) << "Passenger" << "|";
                 break;
             }
-            reserved = loop->getReserved();
-            if (reserved)
+            outFile << setw(17) << it.getLocation()->getVehicle()->getVehicleName() << endl;
+        }
+    }
+
+    outFile.close();
+}
+
+void printRooster(list<Vehicle*>& cars)
+{
+    ofstream outFile;
+    int cnt = 1;
+
+    outFile.open("Vehicle_Rooster.txt");
+
+    outFile << setw(4) << right << "|";
+    outFile << setw(15) << left << "Vehicle" << "|";
+    outFile << setw(15) << "Type of seat" << "|";
+    outFile << setw(15) << "Resevation Status" << "|";
+    outFile << setw(15) << "Dodger " << endl;
+    outFile << setfill('-') << setw(70) << right << ' ' << endl;
+    outFile << setfill(' ');
+
+    for (auto it : cars)
+    {
+        for (auto loop : it->getSeat())
+        {
+            outFile << setw(3) << right << cnt++ << "|";
+            outFile << setw(15) << left << it->getVehicleName() << "|";
+
+            switch (loop->getPoints())
+            {
+            case -1:
+                outFile << setw(15) << "Driver" << "|";
+                break;
+            case  1:
+                outFile << setw(15) << "Center Back" << "|";
+                break;
+            case  2:
+                outFile << setw(15) << "Side Back" << "|";
+                break;
+            case  3:
+                outFile << setw(15) << "Compact Back" << "|";
+                break;
+            case  5:
+                outFile << setw(15) << "Passenger" << "|";
+                break;
+            }
+            
+            if (loop->getReserved())
             {
                 outFile << right << setw(17) << "Resereved" << "|";
                 outFile << setw(15) << loop->getPlayer()->getName() << endl;
@@ -426,7 +314,7 @@ void printRooster(list<Vehicle>& cars)
     outFile.close();
 }
 
-void printRooster(Vehicle& car)
+void printRooster(Vehicle * car)
 {
     ofstream outFile;
     string temp;
@@ -435,7 +323,7 @@ void printRooster(Vehicle& car)
     bool reserved;
     int cnt = 1;
 
-    temp = car.getVehicleName();
+    temp = car->getVehicleName();
     do
         // loop until all space are out of playlist name
     {
@@ -456,8 +344,6 @@ void printRooster(Vehicle& car)
     } while (reserved);
 
     outFile.open((temp + ".txt").c_str());
-    vector<Seat*> postions;
-
 
     outFile << setw(4) << right << "|";
     outFile << setw(15) << left << "Vehicle" << "|";
@@ -467,15 +353,12 @@ void printRooster(Vehicle& car)
     outFile << setfill('-') << setw(70) << right << ' ' << endl;
     outFile << setfill(' ');
 
-    postions = car.getSeat();
-
-    for (auto loop : postions)
+    for (auto loop : car->getSeat())
     {
         outFile << setw(3) << right << cnt++ << "|";
-        outFile << setw(15) << left << car.getVehicleName() << "|";
-        points = loop->getPoints();
+        outFile << setw(15) << left << car->getVehicleName() << "|";
 
-        switch (points)
+        switch (loop->getPoints())
         {
         case -1:
             outFile << setw(15) << "Driver" << "|";
@@ -493,8 +376,8 @@ void printRooster(Vehicle& car)
             outFile << setw(15) << "Passenger" << "|";
             break;
         }
-        reserved = loop->getReserved();
-        if (reserved)
+
+        if (loop->getReserved())
         {
             outFile << right << setw(17) << "Resereved" << "|";
             outFile << setw(15) << loop->getPlayer()->getName() << endl;
@@ -504,7 +387,6 @@ void printRooster(Vehicle& car)
             outFile << right << setw(17) << "Open" << "|";
             outFile << setw(15) << "None" << endl;
         }
-
     }
 
     outFile.close();

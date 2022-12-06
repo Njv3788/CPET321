@@ -19,11 +19,11 @@ Seat::Seat()
 	car = NULL;
 };
 
-Seat::Seat(int p, Vehicle* automotive)
+Seat::Seat(int p)
 {
 	points = p;
 	passenger = NULL;
-	car = automotive;
+	car = NULL;
 };
 
 int Seat::getPoints()
@@ -59,4 +59,16 @@ Seat* Seat::getPointer()
 Vehicle* Seat::getVehicle()
 {
 	return car;
+};
+
+void Seat::setVehicle(Vehicle *Automotive)
+{
+	car = Automotive;
+};
+
+Seat::Seat(int p, Vehicle* fuck)
+{
+	points = p;
+	passenger = NULL;
+	car = fuck;
 };

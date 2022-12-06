@@ -19,9 +19,15 @@
 
 using namespace std;
 
-void reservedSeatViaCar(Vehicle* car, Player* dodger);
+Vehicle* select(list<Vehicle*>& container);
 
-void reservedSeatViaSeats(list<Seat>& locations, Player* dodger);
+Player* select(list<Player>& container);
+
+Player* able2Res(list<Player>& dodgers);
+
+Player* able2Rmv(list<Player>& dodgers);
+
+void reservedSeatViaSeats(list<Seat*>& locations, Player* dodger);
 
 void removeReserved(Player* dodger);
 

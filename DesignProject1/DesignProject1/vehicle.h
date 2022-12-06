@@ -24,14 +24,12 @@ class Vehicle
 	private:
 		string vehicleName;
 		int type;
-		vector<Seat*> postions;
+		list<Seat*> postions;
 		
-		void generateSeats(int type, list<Seat>& locations);
-
 	public:
 		Vehicle();
 
-		Vehicle(string vName, list<Seat>& locations);
+		Vehicle(string vName, list<Seat*>& locations);
 
 		void setPassenger(Player& passenger, int location);
 
@@ -39,11 +37,11 @@ class Vehicle
 
 		int getVehicleTypeNum();
 
-		vector<Seat*> getSeat();
+		list<Seat*> getSeat();
 
 		Vehicle* getPointer();
-		
-		friend Vehicle* Seat::getVehicle();
+
+		void generateSeats(int type, list<Seat*>& locations);
 };
 
 

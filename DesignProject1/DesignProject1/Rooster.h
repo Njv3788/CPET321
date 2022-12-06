@@ -19,27 +19,21 @@
 
 using namespace std;
 
-Vehicle* select(list<Vehicle>& container);
 
-Player* select(list<Player>& container);
 
-Player* able2Res(list<Player>& dodgers);
+void readInPlayer(list<Vehicle*>& cars, list<Player>& dodgers, list<Seat*>& locations);
 
-Player* able2Rmv(list<Player>& dodgers);
+void seatRooster(list<Seat*>& location);
 
-void readInPlayer(list<Vehicle>& cars, list<Player>& dodgers, list<Seat>& locations);
+void vehicleRooster(list<Vehicle*>& cars);
 
-void seatRooster(list<Vehicle> cars);
+void playerRooster(list<Player>& dodgers);
 
-void vehicleRooster(list<Vehicle> cars);
+void printRooster(list<Player>& dodgers);
 
-void playerRooster(list<Player> dodgers);
+void printRooster(list<Vehicle*>& cars);
 
-void printRooster(list<Player> dodgers);
-
-void printRooster(list<Vehicle>& cars);
-
-void printRooster(Vehicle& car);
+void printRooster(Vehicle* car);
 
 
 #endif
